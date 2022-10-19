@@ -226,12 +226,21 @@
         });
       }catch(e){console.log(e)}
 
-      $(document).on('click', function(e) {
-          var container = $(".form_update_cstm");
-          if (!$(e.target).closest(container).length) {
-              container.removeClass("drawer__submodal--active");
-          }
-      });
+      try{
+        $(document).on('click', function(e) {
+            var container = $(".form_update_cstm");
+            if (!$(e.target).closest(container).length) {
+                container.removeClass("drawer__submodal--active");
+            }
+        });
+      }catch(e){console.log(e)}
+
+      try{
+        $(document).on("change",".cstm_op_upsl",function(){
+            var pr = $(this).find("option:selected").attr("price");
+            $(".cstm_upsell_item .money").text("DKK "+pr);
+        });
+      }catch(e){console.log(e)}
       
     })
   }
@@ -382,10 +391,10 @@
             var nprice = nhtmlObject[0].innerText.split(" ")[1]+" "+nhtmlObject[0].innerText.split(" ")[0].replace(".","");
             var options = "";
             for(var m=0; m<arr[k].variants.length; m++){
-              options = options+'<option price="'+arr[k].variants[m].price+'"  id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+' - '+arr[k].variants[m].price+' DKK</option>';
+              options = options+'<option price="'+arr[k].variants[m].price+'"  id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
             }
-            $(".cstm_upsell").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
-            $(".cart_mob_recom_items").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
+            $(".cstm_upsell").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
+            $(".cart_mob_recom_items").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
           }
         }
       },800)
@@ -442,10 +451,10 @@
                 var nprice = nhtmlObject[0].innerText.split(" ")[1]+" "+nhtmlObject[0].innerText.split(" ")[0].replace(".","");
                 var options = "";
                 for(var m=0; m<arr[k].variants.length; m++){
-                  options = options+'<option id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
+                  options = options+'<option price="'+arr[k].variants[m].price+'" id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
                 }
-                $(".cstm_upsell").append('<div class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
-                $(".cart_mob_recom_items").append('<div class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
+                $(".cstm_upsell").append('<div class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
+                $(".cart_mob_recom_items").append('<div class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
               }
             }
           },800)
