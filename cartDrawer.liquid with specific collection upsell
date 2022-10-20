@@ -166,6 +166,7 @@
         $(document).on("click",".cstm_form_edit",function(event){
             event.preventDefault();
             var hndl = $(this).attr("handle").split("?")[0];
+            var vid = $(this).attr("v_id");
             $.getJSON(hndl,function(data){
                 var product = data.product;
                 if(product.variants.length>1){
@@ -174,7 +175,9 @@
                   var op = "";
                   $(".cstm_edt_opt").empty();
                   for(var u=0; u<product.variants.length; u++){
-                    op = op + '<option id="'+product.variants[u].id+'">'+product.variants[u].title+'</option>';
+                    var selected="";
+                    if(product.variants[u].id==vid){selected="selected"}
+                    op = op + '<option '+selected+' id="'+product.variants[u].id+'">'+product.variants[u].title+'</option>';
                   }
                   $(".cstm_edt_opt").append(op);
                   var qt = $(document).find(".cstm_minus[pid="+product.id+"]").attr("quantity");
@@ -195,14 +198,16 @@
             var prev_id = $(".cstm_edt_opt").attr("prev_id");
             if(prev_id != v_id){
              jQuery.post('/cart/change.js', { quantity : 0, id: prev_id });
-             jQuery.post('/cart/add.js', { quantity : qnt, id: v_id });
+             setTimeout(function(){
+              jQuery.post('/cart/add.js', { quantity : qnt, id: v_id });  
+             },300)
             }else{
               jQuery.post('/cart/change.js', { quantity : qnt, id: v_id });
             }
             $(".form_update_cstm").removeClass("drawer__submodal--active");
             setTimeout(function(){
               buildCart();
-            },1000);
+            },1500);
         });
       }catch(e){console.log(e)}
 
@@ -341,7 +346,7 @@
           var pri = theme.Shopify.formatMoney(items[i].final_line_price,theme.money_format);
           var htmlObject = $(pri);
           var price = htmlObject[0].innerText.split(" ")[1]+" "+htmlObject[0].innerText.split(" ")[0].replace(".","");
-          $('.cart_items_cstm').append('<div class=" pb-4 mb-4 border-b border-gray-200 overflow-x-hidden cstm_items"><div class="flex -mx-2 cstm_itm" data-id="'+items[i].product_id+'" v-id="'+items[i].variant_id+'"> <div class="shrink-0 w-1/4 px-2"> <a href="'+items[i].url+'" class="aspect-ratio aspect-ratio--3/4"> <img class="pro_image" src="'+items[i].image+'"> </a> </div> <div class="flex-1 px-2 whitespace-nowrap overflow-hidden"> <p class="truncate"><a href="'+items[i].url+'">'+items[i].title+'</a></p> <button class="flex items-center text-gray-500 cstm_form_edit" handle="'+items[i].url+'" opt="'+items[i].variant_title+'" v_lngth="'+items[i].variant_options.length+'"><font style="vertical-align: inherit;">'+items[i].variant_title+'</font><span class="ml-1 w-5 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 18 18"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="m10.4 5.06 3.54 3.54M7.58 15l-3.89.35.31-3.93 7.64-7.63a2.2 2.2 0 0 1 3.11 0l.42.42a2.2 2.2 0 0 1 0 3.11L7.58 15z"></path></svg> </span></button> <p><span class="money"> '+price+'</span> </p> <div class="lg:block"> <div class="form-quantity"> <button class="cstm_minus" action="minus" type="btn" pid="'+items[i].product_id+'" v_id="'+items[i].variant_id+'" quantity="'+items[i].quantity+'">-</button><span>'+items[i].quantity+'</span> <button class="cstm_plus" action="plus" type="btn" v_id="'+items[i].variant_id+'" quantity="'+items[i].quantity+'">+</button> </div> </div> </div> <div class="px-2"> <button class="block w-8 h-8 p-2 text-gray-500 rounded-full border border-gray-300 cstm_remove" data-change="0" v_id="'+items[i].variant_id+'" action="remove"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" aria-hidden="true"> <defs></defs> <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M14.21 5.5v11H4.22v-11M2.23 5.5H16.2M7.22 13.75v-5.5M11.21 13.75v-5.5M6.34 5.5V4a2.45 2.45 0 01.73-1.77 2.45 2.45 0 011.76-.73h.77A2.5 2.5 0 0112.09 4v1.5"></path> </svg> </button> </div> </div> </div>');
+          $('.cart_items_cstm').append('<div class=" pb-4 mb-4 border-b border-gray-200 overflow-x-hidden cstm_items"><div class="flex -mx-2 cstm_itm" data-id="'+items[i].product_id+'" v-id="'+items[i].variant_id+'"> <div class="shrink-0 w-1/4 px-2"> <a href="'+items[i].url+'" class="aspect-ratio aspect-ratio--3/4"> <img class="pro_image" src="'+items[i].image+'"> </a> </div> <div class="flex-1 px-2 whitespace-nowrap overflow-hidden"> <p class="truncate"><a href="'+items[i].url+'">'+items[i].title+'</a></p> <button class="flex items-center text-gray-500 cstm_form_edit" handle="'+items[i].url+'" opt="'+items[i].variant_title+'" v_id="'+items[i].variant_id+'" v_lngth="'+items[i].variant_options.length+'"><font style="vertical-align: inherit;">'+items[i].variant_title+'</font><span class="ml-1 w-5 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 18 18"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="m10.4 5.06 3.54 3.54M7.58 15l-3.89.35.31-3.93 7.64-7.63a2.2 2.2 0 0 1 3.11 0l.42.42a2.2 2.2 0 0 1 0 3.11L7.58 15z"></path></svg> </span></button> <p><span class="money"> '+price+'</span> </p> <div class="lg:block"> <div class="form-quantity"> <button class="cstm_minus" action="minus" type="btn" pid="'+items[i].product_id+'" v_id="'+items[i].variant_id+'" quantity="'+items[i].quantity+'">-</button><span>'+items[i].quantity+'</span> <button class="cstm_plus" action="plus" type="btn" v_id="'+items[i].variant_id+'" quantity="'+items[i].quantity+'">+</button> </div> </div> </div> <div class="px-2"> <button class="block w-8 h-8 p-2 text-gray-500 rounded-full border border-gray-300 cstm_remove" data-change="0" v_id="'+items[i].variant_id+'" action="remove"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" aria-hidden="true"> <defs></defs> <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M14.21 5.5v11H4.22v-11M2.23 5.5H16.2M7.22 13.75v-5.5M11.21 13.75v-5.5M6.34 5.5V4a2.45 2.45 0 01.73-1.77 2.45 2.45 0 011.76-.73h.77A2.5 2.5 0 0112.09 4v1.5"></path> </svg> </button> </div> </div> </div>');
         }
       });
     }catch(e){console.log(e)}
