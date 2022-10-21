@@ -390,6 +390,10 @@
             end = end-diff;
             strt = strt - 3;
           }
+          if(arr.length<=6){
+            strt = 0;
+            end = arr.length;
+          }
           for(var k=strt; k<end; k++){
             var npri = theme.Shopify.formatMoney(arr[k].variants[0].price,theme.money_format);
             var nhtmlObject = $(npri);
