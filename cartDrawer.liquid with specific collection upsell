@@ -264,15 +264,16 @@
         const daysNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
         var cdate = new Date();
         var time = cdate.getHours();
+        if(time>12 && time<=24 && cdate.getDay()<5){
+          dif = dif+1;
+        }
         var today = cdate.addDays(dif);
         var date = today.getDate();
         var month = today.getMonth();
-        var day = today.getDay();
+        var day = today.getDay()-1;
         if(cdate.getDay()>=5){
-          var difChk = 0;
-          if(cdate.addDays(1).getDay()==1){
-            difChk = 1;
-          }else if(cdate.addDays(2).getDay()==1){
+          var difChk = 1;
+          if(cdate.addDays(2).getDay()==1){
             difChk=2;
           }else if(cdate.addDays(3).getDay()==1){
             difChk = 3;
@@ -280,15 +281,10 @@
           var today = cdate.addDays(difChk);
           date = today.getDate();
           month = today.getMonth();
-          day = today.getDay();
+          day = today.getDay()-1;
         }
-        if(time>0 && time<=12){
-            var fn = daysNames[day]+","+(date)+" "+monthNames[month];
-            $(document).find(".time_cstm").text(fn)
-        }else{
-          var fn = daysNames[day]+","+(date)+" "+monthNames[month];
-          $(document).find(".time_cstm").text(fn)
-        }
+        var fn = daysNames[day]+","+(date)+" "+monthNames[month];
+        $(document).find(".time_cstm").text(fn);
   }
   
   function openCart(){
