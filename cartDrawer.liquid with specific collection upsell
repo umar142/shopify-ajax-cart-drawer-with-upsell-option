@@ -13,23 +13,23 @@
 	</button>
 	<div class="drawer__attached-drawer hidden lg:block cstm_recom_all" data-show="drawer__attached-drawer--active" recom="{{ section.settings.show_recom }}">
 		<div class="flex flex-col max-h-full">
-			<h4 class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Recommendations</font></font></h4>
+			<h4 class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Anbefalinger</font></font></h4>
 			<div class="flex-1 space-y-6 -mx-6 px-6 overflow-auto cstm_upsell" >
 			</div>
 		</div>
 	</div>
 	<div class="flex flex-col h-full px-4 lg:px-6 py-6 lg:py-8 bg-white relative z-10 shadow-xl" :class="{ 'shadow-xl': cart &amp;&amp; cart.item_count > 0 }">
-		<h4 id="cart-drawer-title" class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Basket</font></font><span data-count=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+		<h4 id="cart-drawer-title" class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kurv</font></font><span data-count=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
     </h4>
 		<div class="flex-1 overflow-auto cstm_items_parent" data-scrollable="" :hidden="cart &amp;&amp; cart.item_count === 0" data-scroll-lock-scrollable="">
 			<div  data-items="" class="cart_items_cstm ">
             </div>
           {% if section.settings.show_delivery %}
 			<p class="text-sm lg:text-base leading-none pb-4 mb-4 border-b border-gray-200 flex items-center space-x-1" x-show="cart &amp;&amp; cart.requires_shipping"> <span class="w-6"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" aria-hidden="true"><defs></defs><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M3 13.5H1.5v-9h8v9M11 13.5H7M9.5 6.5h5l2 3v4H15"></path><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M5 15.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM13 15.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path></svg>
-            </span> <span class="font-semibold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Expected delivery:</font></font></span> <span class="text-gray-500"><time class="time_cstm"></time></span> </p>
+            </span> <span class="font-semibold"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Forventet levering:</font></font></span> <span class="text-gray-500"> <time class="time_cstm"></time></span> </p>
           {% endif %}
 			<div class="lg:hidden cart_mob_recom" recom="{{ section.settings.show_recom }}">
-				<h4 class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Recommendations</font></font></h4>
+				<h4 class="uppercase mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Anbefaling</font></font></h4>
 				<div class="flex space-x-2 overflow-auto snap-x cart_mob_recom_items" data-scrollable="" data-scroll-lock-scrollable="">
 				</div>
 			</div>
@@ -37,14 +37,14 @@
 		<form action="/cart" method="post" class="-mx-4 lg:-mx-6 px-6 pt-4 border-t border-gray-200 cstm_checkout hide_me" >
 			<p class="font-semibold flex justify-between mb-4"> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Subtotal</font></font></span> <span class="cstm_total_drawer" data-total=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DKK 999</font></font></span> </p>
 			<label class="block cursor-pointer bg-gray-100 border border-gray-200 rounded-sm p-2 mb-4 leading-none cstm_lbl_term">
-				<input type="checkbox" class="form-checkbox mr-1 terms_cstm_chk"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I have read and accept the Terms and </font></font><a href="/pages/handelsbetingelser"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conditions</font></font></a></label>
-			<button class="button button--primary w-full cstm_go_chkout" name="checkout"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Checkout</font></font>
+				<input type="checkbox" class="form-checkbox mr-1 terms_cstm_chk"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jeg har læst og accepterer </font></font><a href="/pages/handelsbetingelser"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">handelsbetingelserne</font></font></a></label>
+			<button class="button button--primary w-full cstm_go_chkout" name="checkout"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Gå til betaling</font></font>
 			</button>
 		</form>
 		<div class="hide_me cstm_empty" >
-			<p class="text-5xl mb-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Your basket is empty</font></font>
+			<p class="text-5xl mb-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Din kurv er tom</font></font>
 			</p>
-			<p class="text-xl"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Continue your shopping by looking at our </font></font><a href="/collections/all"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">products</font></font></a></p>
+			<p class="text-xl"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fortsæt med at shoppe ved at kigge på vores</font></font><a href="/collections/all"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">produkter</font></font></a></p>
 		</div>
 	</div>
 	<div class="drawer__submodal form_update_cstm " data-show="drawer__submodal--active">
@@ -70,10 +70,10 @@
       </form>
     </div>
 	<div class="drawer__submodal cstm_no_term" data-show="drawer__submodal--active">
-		<p class="text-lg lg:text-2xl text-center mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">I have read and accept the Terms and </font></font><a href="/pages/handelsbetingelser"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conditions</font></font></a></p>
-		<button class="button button--primary w-full mb-2 cstm_term_accept" data-accept=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Accept</font></font>
+		<p class="text-lg lg:text-2xl text-center mb-6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jeg har læst og accepterer </font></font><a href="/pages/handelsbetingelser"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">handelsbetingelserne</font></font></a></p>
+		<button class="button button--primary w-full mb-2 cstm_term_accept" data-accept=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Accepter</font></font>
 		</button>
-		<button class="button button--link w-full cstm_term_reject" data-decline=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Decline</font></font>
+		<button class="button button--link w-full cstm_term_reject" data-decline=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Afvis</font></font>
 		</button>
 	</div>
 </div>
@@ -243,7 +243,10 @@
       try{
         $(document).on("change",".cstm_op_upsl",function(){
             var pr = $(this).find("option:selected").attr("price");
-            $(".cstm_upsell_item .money").text("DKK "+pr);
+            $(this).parents(".cstm_upsell_item").find(".money.price").text("DKK "+pr);
+            var cpr = $(this).find("option:selected").attr("cprice");
+            $(this).parents(".cstm_upsell_item").find("span.cmprice.money").text("DKK "+cpr);
+          
         });
       }catch(e){console.log(e)}
       
@@ -258,10 +261,10 @@
             date.setDate(date.getDate() + days);
             return date;
         }
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
+        const monthNames = ["Januar", "Februar", "Marts", "April", "Maj", "Juni",
+          "Juli", "August", "September", "Oktober", "November", "December"
         ];
-        const daysNames = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
+        const daysNames = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag","Søndag"];
         var cdate = new Date();
         var time = cdate.getHours();
         if(time>12 && time<=24 && cdate.getDay()<5){
@@ -394,12 +397,23 @@
             var npri = theme.Shopify.formatMoney(arr[k].variants[0].price,theme.money_format);
             var nhtmlObject = $(npri);
             var nprice = nhtmlObject[0].innerText.split(" ")[1]+" "+nhtmlObject[0].innerText.split(" ")[0].replace(".","");
+            
+            var cprice = '';
+            if(arr[k].variants[0].compare_at_price != null){
+              var cpri = theme.Shopify.formatMoney(arr[k].variants[0].compare_at_price,theme.money_format);
+              var chtmlObject = $(cpri);
+              cprice = chtmlObject[0].innerText.split(" ")[1]+" "+chtmlObject[0].innerText.split(" ")[0].replace(".","");
+            }
+            var comPrice = '<span class="cmprice money"></span>';
+            if(arr[k].variants[0].compare_at_price != null){
+              comPrice = '<span class="cmprice money">'+cprice+'</span>';
+            }
             var options = "";
             for(var m=0; m<arr[k].variants.length; m++){
-              options = options+'<option price="'+arr[k].variants[m].price+'"  id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
+              options = options+'<option cprice="'+arr[k].variants[m].compare_at_price+'" price="'+arr[k].variants[m].price+'"  id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
             }
-            $(".cstm_upsell").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
-            $(".cart_mob_recom_items").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
+            $(".cstm_upsell").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money price">'+nprice+'</span>'+comPrice+'</p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">Tilføj til kurv</button> </form> </div> </div>');
+            $(".cart_mob_recom_items").append('<div strt="'+strt+'" end="'+end+'"  class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].images[0].src+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money price">'+nprice+'</span>'+comPrice+' </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">Tilføj til kurv</button> </form> </div> </div>')
           }
         }
       },800)
@@ -458,8 +472,8 @@
                 for(var m=0; m<arr[k].variants.length; m++){
                   options = options+'<option price="'+arr[k].variants[m].price+'" id="'+arr[k].variants[m].id+'">'+arr[k].variants[m].title+'</option>';
                 }
-                $(".cstm_upsell").append('<div class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">add to cart</button> </form> </div> </div>');
-                $(".cart_mob_recom_items").append('<div class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">add to cart</button> </form> </div> </div>')
+                $(".cstm_upsell").append('<div class="flex-none w-32 lg:w-full snap-start cstm_upsell_item"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'" > </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl"> '+options+' </select> <button class="button button--primary w-full cstm_add_upsell_desk" type="btn">Tilføj til kurv</button> </form> </div> </div>');
+                $(".cart_mob_recom_items").append('<div class="flex-none w-32 lg:w-full snap-start"> <div class="mb-2"> <div class="product-item"> <a href="/products/'+arr[k].handle+'" class="block mb-4"> <div class="product-item__images aspect-ratio aspect-ratio--3/4"> <img src="'+arr[k].featured_image+'"> </div> </a> <p class="text-sm font-semibold truncate">'+arr[k].title+'</p> <p> <span class="money">'+nprice+'</span> </p> </div> </div> <div class="hidden lg:block"> <form method="post" action="/cart/add" accept-charset="UTF-8"> <input type="hidden" name="form_type" value="product"> <input type="hidden" name="utf8" value="✓"> <select name="id" class="form-select mb-2 cstm_op_upsl">'+options+' </select> <button class="button button--primary w-full cstm_add_upsell_mob">Tilføj til kurv</button> </form> </div> </div>')
               }
             }
           },800)
@@ -472,6 +486,7 @@
   div#cart-summary-overlay {
     display: none;
 }
+
 </style>
 
 {% schema %}
