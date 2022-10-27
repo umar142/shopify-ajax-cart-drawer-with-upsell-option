@@ -11,6 +11,9 @@
     font-size: 14px;
     text-decoration: line-through;
 }
+span.cmprice.money[show="hide_me"] {
+    display: none;
+}
 .cstm_upsell_item span.cmprice.money {
     font-size: 13px;
     text-decoration: line-through;
